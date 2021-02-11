@@ -1,3 +1,3 @@
-# node-express-starter
+# KittyUniverse back-end
 
-Basic express app starter built with help of https://github.com/IBM/nodejs-express-app
+KittyUniverse back-end built with node.js and express framework. This module is responsible only for creating and managing payments created with solidity smart contracts.

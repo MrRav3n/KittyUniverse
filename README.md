@@ -1,3 +1,4 @@
-# node-express-starter
+# KittyUniverse blockchain module 
 
-Basic express app starter built with help of https://github.com/IBM/nodejs-express-app
+KittyUniverse blockchain module built with node.js, express framework and solidity. This module is responsible for creating and managing payments created with solidity smart contracts. 
+
