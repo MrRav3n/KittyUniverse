@@ -1,5 +1,5 @@
 // import dependencies and initialize express
-const { contractAbi, contractAddress } = require('../../config/nodejsContractConfig');
+const { contractAbi, contractAddress } = require('./nodejsContractConfig');
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
