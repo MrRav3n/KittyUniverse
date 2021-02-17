@@ -1,9 +1,8 @@
-﻿import { contractAbi } from './contractAbi.js';
+﻿import { contractAbi, contractAddress } from '../config/contractConfig.js';
 let web3;
 let contract;
 let tokenPrice;
 let config = {
-    contractAddress: "0x6bE2253b1a4EBdA6a18c68604F4F17cf26F910c7",
     accountAddressId: "account",
     balanceId: "balance",
     tokenPriceId: "tokenPrice"
@@ -72,11 +71,8 @@ const setBalance = async () => {
     document.getElementById(config.balanceId).innerText = await contract.methods.balanceOf(web3.eth.defaultAccount).call();
 }
 
-const getContract = async () => {
-    return new web3.eth.Contract(
-        contractAbi,
-        config.contractAddress
-    );
+const getContract = () => {
+    return new web3.eth.Contract(contractAbi, contractAddress);
 };
 
 startApp();

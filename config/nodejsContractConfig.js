@@ -1,4 +1,5 @@
-﻿export let contractAbi = [
+﻿module.exports.contractAddress =  "0x6bE2253b1a4EBdA6a18c68604F4F17cf26F910c7";
+module.exports.contractAbi = [
     {
         "inputs": [
             {
