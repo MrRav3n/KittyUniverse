@@ -6,36 +6,50 @@ import "safeMath.sol";
 import "aggregatorInterface.sol";
 
 contract KittyUniverse {
+    using SafeMath for uint256;
+    AggregatorV3Interface internal priceFeed;
 
     string public constant name = "KittyUniverse";
     string public constant symbol = "KIU";
     uint8 public constant decimals = 18;
-    AggregatorV3Interface internal priceFeed;
+    uint256 totalSupply_;
+    address creator;
 
     event Approval(address indexed tokenOwner, address indexed spender, uint tokens);
     event Transfer(address indexed from, address indexed to, uint tokens);
 
-
     mapping(address => uint256) balances;
-
     mapping(address => mapping (address => uint256)) allowed;
-
-    uint256 totalSupply_;
-
-    using SafeMath for uint256;
-
 
     constructor(uint256 total) {
         totalSupply_ = total;
         priceFeed = AggregatorV3Interface(0x9326BFA02ADD2366b30bacB125260Af641031331);
+        creator = msg.sender;
     }
 
-    function totalSupply() public view returns (uint256) {
-        return totalSupply_;
+    event FeedEvent(uint id, uint userId, uint tokens, uint foodAmount, string foodType, uint feederId);
+    event AdoptEvent(uint id, uint userId, uint tokens, uint duration);
+    event AdoptionContinuationEvent(uint id, uint userId, uint tokens, uint duration);
+    event PlayEvent(uint id, uint userId, uint tokens, uint toyId, uint duration, uint playgroundId);
+
+    function feed(uint id, uint userId, uint tokens, uint foodAmount, string memory foodType, uint feederId) public payable {
+        transfer(creator, tokens);
+        emit FeedEvent(id, userId, tokens, foodAmount, foodType, feederId);
     }
 
-    function balanceOf(address tokenOwner) public view returns (uint) {
-        return balances[tokenOwner];
+    function adopt(uint id, uint userId, uint tokens, uint duration) public payable {
+        transfer(creator, tokens);
+        emit AdoptEvent(id, userId, tokens, duration);
+    }
+
+    function adoptionContinuation(uint id, uint userId, uint tokens, uint duration) public payable {
+        transfer(creator, tokens);
+        emit AdoptionContinuationEvent(id, userId, tokens, duration);
+    }
+
+    function play(uint id, uint userId, uint tokens, uint toyId, uint duration, uint playgroundId) public payable {
+        transfer(creator, tokens);
+        emit PlayEvent(id, userId, tokens, toyId, duration, playgroundId);
     }
 
     function buyTokens(uint tokensAmount) public payable returns (bool) {
@@ -68,6 +82,14 @@ contract KittyUniverse {
         uint80 answeredInRound
         ) = priceFeed.latestRoundData();
         return price;
+    }
+
+    function totalSupply() public view returns (uint256) {
+        return totalSupply_;
+    }
+
+    function balanceOf(address tokenOwner) public view returns (uint) {
+        return balances[tokenOwner];
     }
 
     function transfer(address receiver, uint numTokens) public returns (bool) {
