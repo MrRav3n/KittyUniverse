@@ -1,4 +1,9 @@
-﻿export const contractAddress =  "0x6bE2253b1a4EBdA6a18c68604F4F17cf26F910c7";
+﻿export const config = {
+    accountAddressId: "account",
+    balanceId: "balance",
+    tokenPriceId: "tokenPrice"
+}
+export const contractAddress =  "0x6bE2253b1a4EBdA6a18c68604F4F17cf26F910c7";
 export const contractAbi = [
     {
         "inputs": [
