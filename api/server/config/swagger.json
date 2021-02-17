@@ -2,7 +2,7 @@
    "swagger": "2.0",
    "info": {
       "version": "1.0.0",
-      "title": "nodejsexpressapp API"
+      "title": "KittyUniverse backend API"
    },
    "consumes": [
       "text/plain"
@@ -10,11 +10,41 @@
    "produces": [
       "application/json"
    ],
+   "tags": [
+      {
+         "name": "Payment",
+         "description": "Payments management"
+      }
+   ],
    "paths": {
-      "/health": {
-         "get": {
-            "operationId": "get",
-            "description": "Get health status of nodejsmicroservice",
+      "/payment/": {
+         "post": {
+            "tags": ["Payment"],
+            "summary": "Create new payment object",
+            "requestBody": {
+               "required": true,
+               "content": {
+                  "application/json": {
+                     "schema": {
+                        "type": "object",
+                        "properties": {
+                           "email": {
+                              "type": "string"
+                           },
+                           "password": {
+                              "type": "string"
+                           },
+                           "lastName": {
+                              "type": "string"
+                           },
+                           "firstName": {
+                              "type": "string"
+                           }
+                        }
+                     }
+                  }
+               }
+            },
             "responses": {
                "200": {
                   "description": "Health check response",
@@ -26,6 +56,18 @@
                         "status": "UP"
                      }
                   }
+               }
+            }
+         }
+      },
+      "/payment": {
+         "get": {
+            "tags": ["User"],
+            "description": "Należy podać token w headerze o nazwie Authorization",
+            "summary": "Logowanie do strony",
+            "responses": {
+               "200": {
+                  "description": "User and token"
                }
             }
          }
