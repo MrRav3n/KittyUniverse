@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div>
+    </div>
+        Konto: <span id="account"></span>
+    <div>
+        Balans konta: <span id="balance"></span>
+    </div>
+    <div>
+        Cena jednego tokena <span id="tokenPrice"></span> ETH  
+    </div>
+    <form id="buyTokensForm">
+        <label for="tokensAmount"></label>
+        <input id="tokensAmount" placeholder="Ilość tokenów" />
+        <button id="buyTokensButton">Kup!</button>
+    </form>
+
+<script type="text/javascript" src="node_modules/web3/dist/web3.min.js"></script>
+<script src="smart-contract-plugin.js" ></script>
+</body>
+</html>
